@@ -1,4 +1,4 @@
-FROM php:8.1.7-fpm-alpine
+FROM php:8.1.12-fpm-alpine
 RUN apk --no-cache add openssl nginx supervisor
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
