@@ -1,5 +1,28 @@
 {
-  "extends": [
-    "config:base"
-  ]
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["config:base", ":automergeMinor"],
+    "labels": ["dependencies"],
+    "prConcurrentLimit": 2,
+    "packageRules": [
+        {
+            "matchDatasources": ["docker"],
+            "addLabels": ["docker"]
+        },
+        {
+            "matchManagers": ["composer"],
+            "addLabels": ["composer"],
+            "rangeStrategy": "bump"
+        },
+        {
+            "matchUpdateTypes": ["major"],
+            "addLabels": ["major"]
+        },
+        {
+            "matchUpdateTypes": ["minor"],
+            "addLabels": ["minor"]
+        },
+        {
+            "matchUpdateTypes": ["patch"],
+            "addLabels": ["patch"]
+        }],
 }
