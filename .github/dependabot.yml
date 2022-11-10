@@ -5,33 +5,48 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-
+    open-pull-requests-limit: 0
+    rebase-strategy: "disabled"
+    
   - package-ecosystem: "docker"
     directory: "/nginx"
     schedule:
       interval: "daily"
-
+    open-pull-requests-limit: 0
+    rebase-strategy: "disabled"
+    
   - package-ecosystem: "docker"
     directory: "/php/8.0"
     schedule:
       interval: "daily"
-
+    open-pull-requests-limit: 0
+    rebase-strategy: "disabled"
+    
   - package-ecosystem: "docker"
     directory: "/php/8.1"
     schedule:
       interval: "daily"
-
+    open-pull-requests-limit: 0
+    rebase-strategy: "disabled"
+    
   - package-ecosystem: "docker"
     directory: "/php-nginx-node-supervisor"
     schedule:
       interval: "daily"
-
+    open-pull-requests-limit: 0
+    rebase-strategy: "disabled"
+    
   - package-ecosystem: "docker"
     directory: "/php-nginx-supervisor"
     schedule:
       interval: "daily"
-
+    open-pull-requests-limit: 0
+    rebase-strategy: "disabled"
+    
   - package-ecosystem: "docker"
     directory: "/php-node-nginx"
     schedule:
       interval: "daily"
+    open-pull-requests-limit: 0
+    rebase-strategy: "disabled"
+    
