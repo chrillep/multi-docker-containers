@@ -76,7 +76,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v5.1.0
         with:
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+#          platforms: linux/amd64,linux/arm/v7,linux/arm64
           context: "{{defaultContext}}:php-nginx-node-supervisor"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
