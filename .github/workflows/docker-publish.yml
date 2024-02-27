@@ -12,8 +12,6 @@ on:
     branches: [ "main" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
-    paths:
-      - '**/Dockerfile'
   pull_request:
     branches: [ "main" ]
     paths:
@@ -39,6 +37,7 @@ jobs:
           EVENT_CONTEXT: ${{ toJSON(github.event) }}
         run: |
           echo $EVENT_CONTEXT
+          echo "{{defaultContext}}"
 
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
@@ -78,6 +77,7 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
             type=schedule
             type=ref,event=branch
             type=ref,event=tag
