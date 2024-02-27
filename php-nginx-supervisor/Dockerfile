@@ -1,4 +1,4 @@
-FROM php:8.1.7-fpm-alpine
+FROM php:8.3.3-fpm-alpine@sha256:5642a2fd6c6121ea0aacc08db7ee211825b83a0fb8a47dd0c2682dacfa171639
 RUN apk --no-cache add openssl nginx supervisor
 COPY --from=wordpress:cli /usr/local/bin/wp /usr/local/bin/wp
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
