@@ -84,7 +84,6 @@ jobs:
           tags: |
             type=semver,pattern={{version}},value=${{ env.IMAGE_TAG }}
             type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
             type=sha
 
       # Build and push Docker image with Buildx (don't push on PR)
@@ -93,7 +92,7 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v5.1.0
         with:
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          platforms: linux/amd64,linux/arm64
           context: "{{defaultContext}}:${{ matrix.path }}"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
