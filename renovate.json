@@ -4,7 +4,7 @@
     "dependencies"
   ],
   "baseBranches": [
-    "develop"
+    "main"
   ],
   "commitMessageAction": "⬆️ Bump",
   "extends": [
