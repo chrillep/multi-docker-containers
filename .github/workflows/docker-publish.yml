@@ -40,8 +40,8 @@ jobs:
           echo "Path is ${{ matrix.path }}" >> "$GITHUB_STEP_SUMMARY"
           echo "IMAGE_TYPE=$(echo ${{ matrix.path }} | cut -d/ -f1)"  >> "$GITHUB_ENV"
           echo "IMAGE_TYPE=$(echo ${{ matrix.path }} | cut -d/ -f1)"  >> "$GITHUB_STEP_SUMMARY"
-          echo "IMAGE_TAG=$(grep -m1 -oP '(?<=FROM\s)([a-z]+\/)?[a-z]+:[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+)?(-alpine)?' ${{ matrix.path }}/Dockerfile | cut -d: -f2 | cut -d@ -f1)"  >> "$GITHUB_ENV"
-          echo "IMAGE_TAG=$(grep -m1 -oP '(?<=FROM\s)([a-z]+\/)?[a-z]+:[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+)?(-alpine)?' ${{ matrix.path }}/Dockerfile | cut -d: -f2 | cut -d@ -f1)"  >> "$GITHUB_STEP_SUMMARY"
+          echo "IMAGE_TAG=$(grep -m1 -oP '(?<=FROM\s)([a-z]+\/)?[a-z]+:[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+)?' ${{ matrix.path }}/Dockerfile | cut -d: -f2 | cut -d@ -f1)"  >> "$GITHUB_ENV"
+          echo "IMAGE_TAG=$(grep -m1 -oP '(?<=FROM\s)([a-z]+\/)?[a-z]+:[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+)?' ${{ matrix.path }}/Dockerfile | cut -d: -f2 | cut -d@ -f1)"  >> "$GITHUB_STEP_SUMMARY"
 
       - name: set image name
         id: set-image-name
@@ -82,10 +82,8 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable={{is_default_branch}}
             type=schedule
             type=ref,event=branch
-            type=ref,event=tag
             type=ref,event=pr
             type=semver,pattern={{version}},value=v${{ env.IMAGE_TAG }}
             type=semver,pattern={{major}}.{{minor}}
