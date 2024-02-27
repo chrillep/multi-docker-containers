@@ -43,10 +43,10 @@ jobs:
           echo "IMAGE_TYPE=$(echo ${{ matrix.path }} | cut -d/ -f1)"  >> "$GITHUB_STEP_SUMMARY"
           echo "IMAGE_TAG=$(grep -m1 -oP '(?<=FROM\s)([a-z]+\/)?[a-z]+:[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+)?(-alpine)?' ${{ matrix.path }}/Dockerfile | cut -d: -f2 | cut -d@ -f1)"  >> "$GITHUB_ENV"
           echo "IMAGE_TAG=$(grep -m1 -oP '(?<=FROM\s)([a-z]+\/)?[a-z]+:[0-9]+\.[0-9]+\.[0-9]+(-[a-z]+)?(-alpine)?' ${{ matrix.path }}/Dockerfile | cut -d: -f2 | cut -d@ -f1)"  >> "$GITHUB_STEP_SUMMARY"
-          echo "$IMAGE_TAG"
-          echo "$IMAGE_TYPE"
-          echo "IMAGE_NAME=${{github.repository_owner}}/${{env.IMAGE_TYPE}}:${{env.IMAGE_TAG}}"  >> "$GITHUB_ENV"
-          echo "IMAGE_NAME=${{github.repository_owner}}/${{env.IMAGE_TYPE}}:${{env.IMAGE_TAG}}"  >> "$GITHUB_STEP_SUMMARY"
+          echo "$IMAGE_TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "$IMAGE_TYPE" >> "$GITHUB_STEP_SUMMARY"
+          echo "IMAGE_NAME=${{github.repository_owner}}/$IMAGE_TYPE:$IMAGE_TAG" >> "$GITHUB_ENV"
+          echo "IMAGE_NAME=${{github.repository_owner}}/$IMAGE_TYPE:$IMAGE_TAG" >> "$GITHUB_STEP_SUMMARY"
 #      - name: Set up QEMU
 #        uses: docker/setup-qemu-action@v3.0.0
 #
