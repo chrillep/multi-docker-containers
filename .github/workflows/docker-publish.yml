@@ -28,8 +28,6 @@ jobs:
     permissions:
       contents: read
       packages: write
-      # This is used to complete the identity challenge
-      # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
     steps:
@@ -37,7 +35,8 @@ jobs:
           EVENT_CONTEXT: ${{ toJSON(github.event) }}
         run: |
           echo $EVENT_CONTEXT
-          echo "{{defaultContext}}"
+          echo {{defaultContext}}
+          echo ${{defaultContext}}
 
       - name: Checkout repository
         uses: actions/checkout@v4.1.1
