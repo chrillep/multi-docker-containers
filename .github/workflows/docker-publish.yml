@@ -46,8 +46,8 @@ jobs:
       - name: set image name
         id: set-image-name
         run: |
-          echo "IMAGE_NAME=${{github.repository_owner}}/$IMAGE_TYPE:$IMAGE_TAG" >> "$GITHUB_ENV"
-          echo "IMAGE_NAME=${{github.repository_owner}}/$IMAGE_TYPE:$IMAGE_TAG" >> "$GITHUB_STEP_SUMMARY"
+          echo "IMAGE_NAME=${{github.repository_owner}}/$IMAGE_TYPE" >> "$GITHUB_ENV"
+          echo "IMAGE_NAME=${{github.repository_owner}}/$IMAGE_TYPE" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3.0.0
@@ -82,11 +82,12 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
             type=schedule
             type=ref,event=branch
             type=ref,event=tag
             type=ref,event=pr
-            type=semver,pattern={{version}}
+            type=semver,pattern={{version}},value=v${{ env.IMAGE_TAG }}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
