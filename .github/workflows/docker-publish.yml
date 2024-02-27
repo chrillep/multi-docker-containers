@@ -35,7 +35,6 @@ jobs:
           EVENT_CONTEXT: ${{ toJSON(github.event) }}
         run: |
           echo $EVENT_CONTEXT
-          echo {{defaultContext}}
           echo ${{defaultContext}}
 
       - name: Checkout repository
