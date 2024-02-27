@@ -82,10 +82,7 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}},value=v${{ env.IMAGE_TAG }}
+            type=semver,pattern={{version}},value=${{ env.IMAGE_TAG }}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
