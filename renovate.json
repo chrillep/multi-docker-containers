@@ -3,7 +3,7 @@
   "labels": [
     "dependencies"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "main"
   ],
   "commitMessageAction": "⬆️ Bump",
@@ -43,18 +43,18 @@
     },
     {
       "groupName": "Bud",
-      "matchPackagePrefixes": [
-        "@roots/"
-      ],
       "schedule": [
         "at any time"
+      ],
+      "matchPackageNames": [
+        "@roots/{/,}**"
       ]
     },
     {
       "groupName": "Alpine.js",
-      "matchPackagePrefixes": [
-        "alpinejs",
-        "@alpinejs/"
+      "matchPackageNames": [
+        "alpinejs{/,}**",
+        "@alpinejs/{/,}**"
       ]
     },
     {
@@ -99,12 +99,20 @@
       ]
     },
     {
-      "matchDatasources": ["docker"],
-      "addLabels": ["docker"]
+      "matchDatasources": [
+        "docker"
+      ],
+      "addLabels": [
+        "docker"
+      ]
     },
     {
-      "matchManagers": ["github-actions"],
-      "addLabels": ["github_actions"]
+      "matchManagers": [
+        "github-actions"
+      ],
+      "addLabels": [
+        "github_actions"
+      ]
     }
   ],
   "timezone": "Europe/Stockholm"
