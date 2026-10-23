@@ -1,4 +1,4 @@
-FROM php:8.2.7-fpm-alpine
+FROM php:8.5.12-fpm-alpine@sha256:f09d9172dd28b8696aef729ca2c2081a132c1f8d581218c99497d552c82a92df
 RUN apk --no-cache add nginx supervisor nodejs npm yarn openssl git curl libc6-compat openssh zip
 COPY --from=wordpress:cli /usr/local/bin/wp /usr/local/bin/wp
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
